@@ -1,0 +1,17 @@
+[tool.poetry]
+name = "raw-process-repro"
+version = "0.1.0"
+description = ""
+authors = ["Christopher L. Crutchfield <ccrutchf@ucsd.edu>"]
+readme = "README.md"
+packages = [{include = "raw_process_repro"}]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+opencv-python = "^4.8.0.76"
+rawpy = "^0.18.1"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
