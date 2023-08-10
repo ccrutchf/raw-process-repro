@@ -17,14 +17,14 @@ def demosaic(img):
 
 if __name__ == '__main__':
     raw = rawpy.imread(file_name)
-    np.save(f"{platform.system()}.raw", raw.raw_image)
+    # np.save(f"{platform.system()}.raw", raw.raw_image)
 
     raw_cp = raw.raw_image.copy()
-    np.save(f"{platform.system()}.raw_cp", raw_cp)
+    # np.save(f"{platform.system()}.raw_cp", raw_cp)
 
     linear = linearization(raw_cp)
-    np.save(f"{platform.system()}.linear", linear)
+    # np.save(f"{platform.system()}.linear", linear)
 
     debayer = demosaic(linear)
-    np.save(f"{platform.system()}.debayer", debayer)
+    # np.save(f"{platform.system()}.debayer", debayer)
     cv2.imwrite(f"{platform.system()}.debayer.png", debayer)
