@@ -7,7 +7,7 @@ readme = "README.md"
 packages = [{include = "raw_process_repro"}]
 
 [tool.poetry.dependencies]
-python = "^3.11"
+python = "^3.10"
 opencv-python = "^4.8.0.76"
 rawpy = "^0.18.1"
 
