@@ -2,30 +2,37 @@ import numpy as np
 import rawpy
 import cv2
 import platform
+import gc
 
 file_name = '../example.orf'
 
 def linearization(img):
     img[img > 65000] = img.min()
 
-    img = ((img - img.min()) * (1/(img.max() - img.min()) * 65535)).astype('uint16')
-    return img
+    img2 = ((img - img.min()) * (1/(img.max() - img.min()) * 65535)).astype(np.uint16)
+    return img2
 
 def demosaic(img):
-    img = cv2.demosaicing(img, cv2.COLOR_BayerGB2BGR) 
-    return img
+    img2 = cv2.demosaicing(img, cv2.COLOR_BayerGB2BGR) 
+    return img2
 
-if __name__ == '__main__':
+def main():
+    raw_list = []
+
     for i in range(3):
-        raw = rawpy.imread(file_name)
-        # np.save(f"{platform.system()}_{i}.raw", raw.raw_image)
+        # with rawpy.imread(file_name) as elephant:
+        elephant = rawpy.imread(file_name)
+        # raw_list += [elephant]
 
-        raw_cp = raw.raw_image.copy()
-        # np.save(f"{platform.system()}_{i}.raw_cp", raw_cp)
-
-        linear = linearization(raw_cp)
-        # np.save(f"{platform.system()}_{i}.linear", linear)
-
+        linear = linearization(elephant.raw_image)
         debayer = demosaic(linear)
-        # np.save(f"{platform.system()}_{i}.debayer", debayer)
+        
         cv2.imwrite(f"{platform.system()}_{i}.debayer.png", debayer)
+
+        elephant.close()
+
+            
+if __name__ == '__main__':
+    # gc.disable()
+    main()
+    # gc.enable()

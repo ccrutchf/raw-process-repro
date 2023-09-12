@@ -10,6 +10,7 @@ packages = [{include = "raw_process_repro"}]
 python = "^3.11"
 opencv-python = "^4.8.0.76"
 rawpy = "^0.18.1"
+matplotlib = "^3.7.2"
 
 
 [build-system]
